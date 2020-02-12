@@ -242,7 +242,7 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.PLL.PLLQ = 9;
     RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
     RCC_OscInitStruct.PLL.PLLR = 2;
-    #elif defined (STM32H743xx)// 480MHz/48MHz
+    #elif defined (STM32H743xx) || defined (STM32H747xx)// 480MHz/48MHz
     //PLL1 48MHz for USB, SDMMC and FDCAN
     flash_latency = FLASH_LATENCY_2;
     RCC_OscInitStruct.PLL.PLLM = 3;
@@ -259,7 +259,7 @@ void SystemClock_Config(void)
         __fatal_error("HAL_RCC_OscConfig");
     }
 
-    #if defined(STM32H743xx)
+    #if defined(STM32H743xx) || defined(STM32H747xx)
     // PLL2 200MHz for FMC and QSPI.
     PeriphClkInitStruct.PLL2.PLL2M = 3;
     PeriphClkInitStruct.PLL2.PLL2N = 100;
